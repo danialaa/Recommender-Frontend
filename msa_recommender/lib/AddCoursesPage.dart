@@ -49,7 +49,7 @@ class AddCoursesState extends State<AddCourses> {
                                 Colors.white : Colors.black
                             ),
                             placeholder: "Course ID",
-                            controller: controllers[element.cou],
+                            controller: _id1,
                             prefix: Icon(
                               Icons.credit_card,
                               color: Colors.deepPurple,
@@ -75,7 +75,7 @@ class AddCoursesState extends State<AddCourses> {
                             ),
                           ),
                           onPressed: () {
-                            if (_id.text.isEmpty) {
+                            if (_id1.text.isEmpty) {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
@@ -96,7 +96,7 @@ class AddCoursesState extends State<AddCourses> {
                               );
                             } else {
                               setState(() {
-                                courses.add(_id.text);
+                                courses.add(_id1.text);
                               });
 
                               //ADD COURSE TO VISIBLE LIST

@@ -13,7 +13,7 @@ class AddSingleSemester extends StatefulWidget {
 }
 
 class AddSingleSemesterPage extends State<AddSingleSemester> {
-  int semNumber = 1, crdtHours = 2;
+  int semNumber = 1, crdtHours = 8;
   final _sid = TextEditingController(), _gpa = TextEditingController();
 
   @override
@@ -117,7 +117,7 @@ class AddSingleSemesterPage extends State<AddSingleSemester> {
                           ),
                           onPressed: () {
                             setState(() {
-                              if (crdtHours > 2) {
+                              if (crdtHours > 8) {
                                 crdtHours--;
                               }
                             });

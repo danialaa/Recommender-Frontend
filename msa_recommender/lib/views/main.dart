@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:msa_recommender/models/Grade.dart';
 import 'package:msa_recommender/models/Semester.dart';
+import 'package:msa_recommender/models/Course.dart';
 import 'LoginPage.dart';
 
 void main() => runApp(MyApp());
@@ -56,6 +58,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+void addTemp() {
+  Course course = new Course("CS213", Grade.A, 3);
+  Course course2 = new Course("CS232", Grade.A, 3);
+  List<Course> courses = new List();
+  courses.add(course);
+  courses.add(course2);
+  Semester sem = new Semester(1, 18, courses);
+  semesters.add(sem);
+  Semester sem2 = new Semester(2, 36, courses);
+  semesters.add(sem2);
+}
+
 class LoadPage extends StatefulWidget {
   LoadPage({Key key}) : super(key: key);
 
@@ -64,6 +78,13 @@ class LoadPage extends StatefulWidget {
 }
 
 class LoadPageState extends State<LoadPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    addTemp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

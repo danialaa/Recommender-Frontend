@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:msa_recommender/models/Major.dart';
 import 'SemestersPage.dart';
 import 'main.dart';
 
@@ -13,13 +14,50 @@ class Login extends StatefulWidget {
 
 class LoginPage extends State<Login> {
   final _sid = TextEditingController(),
-      _gpa = TextEditingController();
+      _gpa = TextEditingController(),
+      _name = TextEditingController();
+
+  String currentMajor = Major.Arts_and_Design.name;
+  int selected = 0;
+  List<String> majors = [Major.Arts_and_Design.name,
+                         Major.Bio_Technology.name,
+                         Major.Computer_Science.name,
+                         Major.Dentistry.name,
+                         Major.Engineering.name,
+                         Major.Languages.name,
+                         Major.Management.name,
+                         Major.Mass_Communication.name,
+                         Major.Pharmacy.name];
 
   @override
   void dispose() {
     super.dispose();
     _sid.dispose();
     _gpa.dispose();
+    _name.dispose();
+  }
+
+  Widget buildPicker() {
+    return CupertinoPicker(
+        itemExtent: 50,
+        backgroundColor: CupertinoColors.white,
+        onSelectedItemChanged: (index) {
+          setState(() {
+            selected = index;
+            currentMajor = majors[index];
+          });
+        },
+        children: List<Widget>.generate(
+          majors.length,
+              (index) {
+            return Center(
+              child: Text(
+                majors[index],
+                style: TextStyle(fontSize: 18, color: gold),
+              ),
+            );
+          },
+        ));
   }
 
   @override
@@ -60,6 +98,23 @@ class LoginPage extends State<Login> {
                       controller: _sid,
                       keyboardType: TextInputType.number,
                       prefix: Icon(
+                        Icons.credit_card,
+                        color: gold,
+                      ),
+                    ),
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.fromLTRB(25, 20, 25, 0),
+                    child: CupertinoTextField(
+                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).brightness == Brightness.dark ?
+                          Colors.white : Colors.black
+                      ),
+                      placeholder: "Student Name",
+                      controller: _name,
+                      prefix: Icon(
                         Icons.person,
                         color: gold,
                       ),
@@ -87,7 +142,41 @@ class LoginPage extends State<Login> {
                     ),
                   ),
                   new Padding(
-                    padding: EdgeInsets.fromLTRB(25, 30, 25, 0),
+                    padding: EdgeInsets.fromLTRB(30, 10, 10, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        new Text(
+                          "Major",
+                          style: TextStyle(fontSize: 16, color: navy),
+                        ),
+                        new Expanded(
+                            child: Align (
+                              alignment: FractionalOffset.centerRight,
+                              child: CupertinoButton(
+                                onPressed: () async {
+                                  await showModalBottomSheet<int>(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return buildPicker();
+                                    },
+                                  );
+                                },
+                                child: Text(
+                                  majors[selected],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: gold,
+                                  ),
+                                ),
+                              ),
+                            )
+                        )
+                      ],
+                    ),
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
                     child: SizedBox(
                       width: double.infinity,
                       child: CupertinoButton(
@@ -113,7 +202,7 @@ class LoginPage extends State<Login> {
                     ),
                   ),
                   new Padding(
-                    padding: EdgeInsets.fromLTRB(25, 60, 25, 30),
+                    padding: EdgeInsets.fromLTRB(25, 60, 25, 10),
                     child: SizedBox(
                       width: double.infinity,
                       child: CupertinoButton(
@@ -153,6 +242,31 @@ class LoginPage extends State<Login> {
                             }
                           }),
                     ),
+                  ),
+                  new Align (
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 25),
+                        child: Text(
+                          "Already made this step?",
+                          style: TextStyle(
+                            color: gold
+                          )
+                        )
+                      )
+                  ),
+                  new Align (
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child: Image.asset(
+                        "assets/msa_logo.png",
+                        width: 140,
+                        height: 140,
+                        color: Color.fromRGBO(255, 255, 255, 0.4),
+                        colorBlendMode: BlendMode.modulate,
+                      ),
+                    )
                   ),
                 ],
               )

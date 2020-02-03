@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "669679351321",
+    "firebase_url": "https://univeristyregisteration.firebaseio.com",
+    "project_id": "univeristyregisteration",
+    "storage_bucket": "univeristyregisteration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669679351321:android:dc641ce1d79f7fb3a89c88",
+        "android_client_info": {
+          "package_name": "com.example.msa_recommender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669679351321-o7fab2qnn4i9pkorbr6h9vv1m7iaqchh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZHPmc5GWjKsR5xEXe3gT_PCc6NlnmzQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669679351321-o7fab2qnn4i9pkorbr6h9vv1m7iaqchh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

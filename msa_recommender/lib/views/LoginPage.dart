@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'AddCoursesPage.dart';
+import 'SemestersPage.dart';
+import 'main.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -16,9 +17,9 @@ class LoginPage extends State<Login> {
 
   @override
   void dispose() {
+    super.dispose();
     _sid.dispose();
     _gpa.dispose();
-    super.dispose();
   }
 
   @override
@@ -26,8 +27,8 @@ class LoginPage extends State<Login> {
     return Scaffold(
         appBar: CupertinoNavigationBar(
           middle: Text(
-            'Login Page',
-            style: TextStyle(color: Colors.teal),
+            'Login',
+            style: TextStyle(color: navy),
           ),
         ),
         body: SafeArea(
@@ -42,7 +43,7 @@ class LoginPage extends State<Login> {
                       "Fill Information As Required",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.teal,
+                        color: gold,
                       ),
                     ),
                   ),
@@ -60,7 +61,7 @@ class LoginPage extends State<Login> {
                       keyboardType: TextInputType.number,
                       prefix: Icon(
                         Icons.person,
-                        color: Colors.deepPurple,
+                        color: gold,
                       ),
                     ),
                   ),
@@ -81,7 +82,7 @@ class LoginPage extends State<Login> {
                       ),
                       prefix: Icon(
                         Icons.school,
-                        color: Colors.deepPurple,
+                        color: gold,
                       ),
                     ),
                   ),
@@ -93,9 +94,9 @@ class LoginPage extends State<Login> {
                           borderRadius: BorderRadius.all(Radius.circular(4)),
                           minSize: 35,
                           padding: EdgeInsets.all(0),
-                          color: Colors.deepPurple,
+                          color: navy,
                           child: Text(
-                            'Add Courses',
+                            'Add Semesters',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -105,7 +106,7 @@ class LoginPage extends State<Login> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AddCourses()
+                                    builder: (context) => Semesters()
                                 )
                             );
                           }),
@@ -119,7 +120,7 @@ class LoginPage extends State<Login> {
                           borderRadius: BorderRadius.all(Radius.circular(4)),
                           minSize: 35,
                           padding: EdgeInsets.all(0),
-                          color: Colors.deepPurple,
+                          color: navy,
                           child: Text(
                             'Login',
                             style: TextStyle(

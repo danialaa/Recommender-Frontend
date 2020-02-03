@@ -13,7 +13,7 @@ class Student {
   double get gpa => _gpa;
 
   set gpa(double value) {
-    if(value > 0.00 && value <= 4.00) {
+    if(value >= 0.00 && value <= 4.00) {
       _gpa = double.parse(value.toStringAsFixed(2));
     }
   }

@@ -27,21 +27,37 @@ class CoursesState extends State<Courses> {
             child: ListView(
                 children: <Widget>[
                   new Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                      children: semesters
-                          .map((element) => Padding(
-                        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: Text(
-                          element.number.toString(),
-                          style: TextStyle(
-                              fontSize: 16,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: semesters.map((element) => Column(
+                        children: <Widget>[
+                          new ListTile(
+                            title: Padding (
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                element.number.toString(),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(context).brightness == Brightness.dark ?
+                                    Colors.white : Colors.black
+                                ),
+                              ),
+                            ),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 20,
                               color: Theme.of(context).brightness == Brightness.dark ?
-                              Colors.white : Colors.black
+                              Colors.white : Colors.black,
+                            ),
                           ),
-                        ),
-                      )
-                      ).toList()
+                          new Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Divider(
+                              height: 1,
+                            ),
+                          )
+                        ],
+                      )).toList()
                   ),
                   new Padding(
                     padding: EdgeInsets.fromLTRB(20, 80, 20, 30),

@@ -12,6 +12,6 @@ enum Major {
 
 extension MajorExtension on Major {
   String get name {
-    return this.toString().split(".").last;
+    return this.toString().split(".").last.replaceAll("_", " ");
   }
 }

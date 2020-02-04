@@ -47,6 +47,14 @@ class AddSemestersState extends State<Semesters> {
                               color: Theme.of(context).brightness == Brightness.dark ?
                               Colors.white : Colors.black,
                             ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddSingleSemester(editType: semesters.indexOf(element).toString(),)
+                                  )
+                              );
+                            },
                           ),
                           new Padding(
                             padding: EdgeInsets.only(left: 20),
@@ -88,7 +96,7 @@ class AddSemestersState extends State<Semesters> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AddSingleSemester()
+                  builder: (context) => AddSingleSemester(editType: "add",)
               )
           );
         },

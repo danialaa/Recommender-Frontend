@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
 
 void addTemp() {
   Course course = new Course("CS213", Grade.A, 3);
-  Course course2 = new Course("CS232", Grade.A, 3);
+  Course course2 = new Course("CS232", Grade.A_minus, 3);
   List<Course> courses = new List();
   courses.add(course);
   courses.add(course2);

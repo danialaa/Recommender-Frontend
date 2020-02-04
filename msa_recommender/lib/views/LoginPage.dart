@@ -40,7 +40,8 @@ class LoginPage extends State<Login> {
   Widget buildPicker() {
     return CupertinoPicker(
         itemExtent: 50,
-        backgroundColor: CupertinoColors.white,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark ?
+                          CupertinoColors.white : CupertinoColors.black,
         onSelectedItemChanged: (index) {
           setState(() {
             selected = index;

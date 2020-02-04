@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:msa_recommender/models/Semester.dart';
 import 'CoursesPage.dart';
 import 'main.dart';
 
 class AddSingleSemester extends StatefulWidget {
-  AddSingleSemester({Key key}) : super(key: key);
+  final String editType;
+
+  AddSingleSemester({Key key, @required this.editType}) : super(key: key);
 
   @override
   AddSingleSemesterPage createState() => AddSingleSemesterPage();
@@ -14,13 +17,21 @@ class AddSingleSemester extends StatefulWidget {
 
 class AddSingleSemesterPage extends State<AddSingleSemester> {
   int semNumber = 1, crdtHours = 8;
-  final _sid = TextEditingController(), _gpa = TextEditingController();
+  Semester semester = new Semester();
+  String header = "";
 
   @override
-  void dispose() {
-    super.dispose();
-    _sid.dispose();
-    _gpa.dispose();
+  void initState() {
+    super.initState();
+    
+    if(widget.editType == "add") {
+      header = "Add Semester";
+    } else {
+      header = "Edit Semester";
+      semester = semesters[int.parse(widget.editType)];
+      semNumber = semester.number;
+      crdtHours = semester.totalCredits;
+    }
   }
 
   @override
@@ -28,7 +39,7 @@ class AddSingleSemesterPage extends State<AddSingleSemester> {
     return Scaffold(
         appBar: CupertinoNavigationBar(
           middle: Text(
-            'Add Semester',
+            header,
             style: TextStyle(color: navy),
           ),
         ),
@@ -169,8 +180,8 @@ class AddSingleSemesterPage extends State<AddSingleSemester> {
                 onTap: () {
                   bool isExist = false;
 
-                  semesters.forEach((semester) => {
-                    if(semester.number == semNumber) {
+                  semesters.forEach((sem) => {
+                    if(sem.number == semNumber && (semesters.contains(semester) && semesters.indexOf(sem) != int.parse(widget.editType))) {
                       isExist = true,
 
                       showDialog(
@@ -195,10 +206,13 @@ class AddSingleSemesterPage extends State<AddSingleSemester> {
                   });
 
                   if(!isExist) {
+                    semester.number = semNumber;
+                    semester.totalCredits = crdtHours;
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Courses(semNumber: semNumber,)
+                            builder: (context) => Courses(semester: semester,)
                         )
                     );
                   }
